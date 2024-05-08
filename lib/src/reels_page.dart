@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:reels_viewer/src/models/reel_model.dart';
 import 'package:reels_viewer/src/utils/url_checker.dart';
 import 'package:video_player/video_player.dart';
+
 import 'components/like_icon.dart';
 import 'components/screen_options.dart';
 
@@ -41,8 +42,7 @@ class _ReelsPageState extends State<ReelsPage> {
   @override
   void initState() {
     super.initState();
-    if (!UrlChecker.isImageUrl(widget.item.url) &&
-        UrlChecker.isValid(widget.item.url)) {
+    if (!UrlChecker.isImageUrl(widget.item.url) && UrlChecker.isValid(widget.item.url)) {
       initializePlayer();
     }
   }
@@ -58,8 +58,7 @@ class _ReelsPageState extends State<ReelsPage> {
     );
     setState(() {});
     _videoPlayerController.addListener(() {
-      if (_videoPlayerController.value.position ==
-          _videoPlayerController.value.duration) {
+      if (_videoPlayerController.value.position == _videoPlayerController.value.duration) {
         widget.swiperController.next();
       }
     });
@@ -83,8 +82,7 @@ class _ReelsPageState extends State<ReelsPage> {
     return Stack(
       fit: StackFit.expand,
       children: [
-        _chewieController != null &&
-                _chewieController!.videoPlayerController.value.isInitialized
+        _chewieController != null && _chewieController!.videoPlayerController.value.isInitialized
             ? FittedBox(
                 fit: BoxFit.cover,
                 child: SizedBox(
@@ -106,10 +104,10 @@ class _ReelsPageState extends State<ReelsPage> {
                   ),
                 ),
               )
-            : Column(
+            : const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  CircularProgressIndicator(),
+                children: [
+                  CircularProgressIndicator.adaptive(),
                   SizedBox(height: 10),
                   Text('Loading...')
                 ],

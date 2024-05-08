@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:reels_viewer/reels_viewer.dart';
 import 'package:reels_viewer/src/components/user_profile_image.dart';
@@ -47,15 +48,14 @@ class ScreenOptions extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         if (item.profileUrl != null)
-                          UserProfileImage(profileUrl: item.profileUrl??''),
+                          UserProfileImage(profileUrl: item.profileUrl ?? ''),
                         if (item.profileUrl == null)
                           const CircleAvatar(
                             child: Icon(Icons.person, size: 18),
                             radius: 16,
                           ),
                         const SizedBox(width: 6),
-                        Text(item.userName,
-                            style: const TextStyle(color: Colors.white)),
+                        Text(item.userName, style: const TextStyle(color: Colors.white)),
                         const SizedBox(width: 10),
                         if (showVerifiedTick)
                           const Icon(
@@ -78,8 +78,7 @@ class ScreenOptions extends StatelessWidget {
                     ),
                     const SizedBox(width: 6),
                     if (item.reelDescription != null)
-                      Text(item.reelDescription ?? '',
-                          style: const TextStyle(color: Colors.white)),
+                      Text(item.reelDescription ?? '', style: const TextStyle(color: Colors.white)),
                     const SizedBox(height: 10),
                     if (item.musicName != null)
                       Row(
@@ -102,27 +101,27 @@ class ScreenOptions extends StatelessWidget {
                 children: [
                   if (onLike != null && !item.isLiked)
                     IconButton(
-                      icon: const Icon(Icons.favorite_outline,
-                          color: Colors.white),
+                      icon: const Icon(Icons.favorite_outline, color: Colors.white),
                       onPressed: () => onLike!(item.url),
                     ),
-                  if (item.isLiked)
-                    const Icon(Icons.favorite_rounded, color: Colors.red),
+                  if (item.isLiked) const Icon(Icons.favorite_rounded, color: Colors.red),
                   Text(NumbersToShort.convertNumToShort(item.likeCount),
                       style: const TextStyle(color: Colors.white)),
                   const SizedBox(height: 20),
                   IconButton(
-                    icon:
-                        const Icon(Icons.comment_rounded, color: Colors.white),
+                    icon: const Icon(CupertinoIcons.chat_bubble_2, color: Colors.white),
                     onPressed: () {
-                  if(onComment!=null)  {  showModalBottomSheet(
-                        barrierColor: Colors.transparent,
-                        context: context,
-                        builder: (ctx) => CommentBottomSheet(commentList: item.commentList??[],onComment: onComment)
-                      );}
+                      if (onComment != null) {
+                        showModalBottomSheet(
+                            barrierColor: Colors.transparent,
+                            context: context,
+                            builder: (ctx) => CommentBottomSheet(
+                                commentList: item.commentList ?? [], onComment: onComment));
+                      }
                     },
                   ),
-                  Text(NumbersToShort.convertNumToShort(item.commentList?.length??0), style: const TextStyle(color: Colors.white)),
+                  Text(NumbersToShort.convertNumToShort(item.commentList?.length ?? 0),
+                      style: const TextStyle(color: Colors.white)),
                   const SizedBox(height: 20),
                   if (onShare != null)
                     InkWell(
