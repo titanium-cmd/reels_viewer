@@ -89,14 +89,12 @@ class _ReelsPageState extends State<ReelsPage> {
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
                   child: GestureDetector(
-                    onDoubleTap: () {
-                      if (!widget.item.isLiked) {
-                        _liked = true;
-                        if (widget.onLike != null) {
-                          widget.onLike!(widget.item.url);
-                        }
-                        setState(() {});
+                    onTap: () {
+                      _liked = !_liked;
+                      if (widget.onLike != null) {
+                        widget.onLike!(widget.item.url);
                       }
+                      setState(() {});
                     },
                     child: Chewie(
                       controller: _chewieController!,
