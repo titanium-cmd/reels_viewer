@@ -3,8 +3,8 @@ import 'package:reels_viewer/reels_viewer.dart';
 class ReelModel {
   final String? id;
   final String url;
-  final bool isLiked;
-  final int likeCount;
+  bool isLiked;
+  int likeCount;
   final String userName;
   final String? profileUrl;
   final String? reelDescription;
