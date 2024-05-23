@@ -99,7 +99,7 @@ class ScreenOptions extends StatelessWidget {
               ),
               Column(
                 children: [
-                  if (onLike != null && !item.isLiked)
+                  if (onLike != null)
                     IconButton(
                       icon: const Icon(Icons.favorite_outline, color: Colors.white),
                       onPressed: () => onLike!(item.url),
